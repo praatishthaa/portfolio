@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Praatishthaa Goyal — ML & Full-Stack Developer</title>
+<meta name="description" content="Portfolio of Praatishthaa Goyal, a Computer Science undergrad building machine learning systems and full-stack web apps. Try the live demos.">
+<meta name="theme-color" content="#060a12">
+<meta property="og:title" content="Praatishthaa Goyal — ML & Full-Stack Developer">
+<meta property="og:description" content="Interactive portfolio: a K-Means playground, a mini intrusion-prevention simulator, a coral-bleaching slider and a terminal.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23060a12'/%3E%3Ctext x='50' y='66' font-family='monospace' font-size='52' font-weight='700' text-anchor='middle' fill='%235eead4'%3EPG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- boot loader -->
+<div id="loader" aria-hidden="true">
+  <pre id="boot"></pre>
+  <div class="skip">click to skip</div>
+</div>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="progress"></div>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+<div id="toast" role="status"></div>
+
+<!-- nav -->
+<header class="nav" id="nav">
+  <a href="#top" class="logo hov" aria-label="Home"><span>PG</span><i></i></a>
+  <nav class="links" aria-label="Sections">
+    <a href="#about" class="hov">About</a>
+    <a href="#experience" class="hov">Experience</a>
+    <a href="#projects" class="hov">Projects</a>
+    <a href="#skills" class="hov">Skills</a>
+    <a href="#education" class="hov">Education</a>
+    <a href="#terminal" class="hov">Terminal</a>
+    <a href="#contact" class="hov">Contact</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="kbd-btn hov" id="openPalette" aria-label="Open command palette"><kbd id="kbdKey">Ctrl</kbd><kbd>K</kbd><span class="menu-lbl">Menu</span></button>
+    <button class="icon-btn hov" id="accentBtn" aria-label="Cycle accent colour" title="Cycle accent colour">✦</button>
+    <button class="icon-btn hov" id="themeBtn" aria-label="Toggle light and dark theme" title="Toggle theme">☾</button>
+    <a class="btn small mag hov" href="Praatishthaa_Goyal_Resume.pdf" download>Resume ↓</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="pill rv"><span class="dot"></span> Open to internships &amp; collaborations</div>
+      <h1 class="name rv" aria-label="Praatishthaa Goyal"><span id="nameA" data-text="Praatishthaa">Praatishthaa</span><br><span class="serif grad" id="nameB" data-text="Goyal">Goyal</span></h1>
+      <p class="role rv"><span class="mono muted">&gt;</span> <span id="typed"></span><span class="caret"></span></p>
+      <p class="lede rv">CS undergrad who turns data into models and models into products. I build machine learning systems and full-stack apps, and I design the things I ship.</p>
+      <div class="cta rv">
+        <a href="#projects" class="btn mag hov">See my work</a>
+        <a href="Praatishthaa_Goyal_Resume.pdf" download class="btn ghost mag hov">Download resume</a>
+        <button class="btn ghost mag hov" id="heroTerm">Open terminal</button>
+      </div>
+      <p class="hint rv mono muted">psst: press <kbd id="kbdKey2">Ctrl</kbd> <kbd>K</kbd>, click the background, or try the Konami code</p>
+    </div>
+
+    <aside class="idcard tilt rv" aria-label="Quick facts">
+      <div class="idcard-glare"></div>
+      <div class="idcard-top"><span class="tl r"></span><span class="tl y"></span><span class="tl g"></span><span class="mono muted">~/praatishthaa</span></div>
+      <div class="avatar"><span>PG</span><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" /><circle cx="60" cy="60" r="42" /></svg></div>
+      <dl class="mono facts">
+        <div><dt>name</dt><dd>Praatishthaa Goyal</dd></div>
+        <div><dt>studying</dt><dd>B.Tech CSE, IKGPTU</dd></div>
+        <div><dt>focus</dt><dd>ML · Full-stack · Design</dd></div>
+        <div><dt>now</dt><dd class="acc">building Sentinel IPS</dd></div>
+        <div><dt>base</dt><dd>Mohali, Punjab</dd></div>
+        <div><dt>local</dt><dd id="clock">--:--:--</dd></div>
+      </dl>
+    </aside>
+  </div>
+  <a href="#about" class="scroll-hint hov" aria-label="Scroll down"><span></span></a>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="sec-head rv"><span class="idx mono">01</span><h2 data-scramble>About</h2></div>
+  <div class="bento">
+    <article class="tile big tilt rv">
+      <h3>Hi, I'm Praatishthaa.</h3>
+      <p>I'm a third-year Computer Science student who likes the whole pipeline: cleaning messy data, training a model, then wrapping it in an interface people actually want to use. Right now I'm deep in network security and machine learning, building a system that spots and stops intrusions automatically.</p>
+      <p class="muted">Off the clock I do freelance graphic design and front-end work, which is why my projects tend to look as good as they run.</p>
+    </article>
+    <article class="tile stat tilt rv"><div class="num"><span data-count="9.24" data-dec="2">0</span></div><div class="lab">CGPA · B.Tech CSE</div></article>
+    <article class="tile stat tilt rv"><div class="num"><span data-count="2">0</span></div><div class="lab">Internships in 2025</div></article>
+    <article class="tile stat tilt rv"><div class="num"><span data-count="3">0</span></div><div class="lab">Projects, all with demos below</div></article>
+    <article class="tile wide tilt rv">
+      <div class="mono muted small-t">currently</div>
+      <h3>Building <span class="grad">Sentinel IPS</span></h3>
+      <p class="muted">An ML-based intrusion detection and AI-powered prevention system using SDN and OpenFlow concepts, built with Python and Flask. Scroll to the projects to poke a tiny simulation of it.</p>
+    </article>
+    <article class="tile stat tilt rv"><div class="num"><span data-count="96.5" data-dec="1">0</span><small>%</small></div><div class="lab">Grade 12, ISC</div></article>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="sec-head rv"><span class="idx mono">02</span><h2 data-scramble>Experience</h2></div>
+  <div class="timeline">
+    <div class="tl-line"><i id="tlFill"></i></div>
+
+    <article class="tl-item rv">
+      <span class="tl-dot"></span>
+      <div class="tl-card tilt">
+        <div class="tl-meta mono"><span>June 2025 – July 2025</span><span>Remote</span></div>
+        <h3>Machine Learning Intern <span class="muted">@ SkillCraft Technologies</span></h3>
+        <ul>
+          <li>Built a K-Means clustering model for customer segmentation with Python, Pandas, NumPy and Scikit-learn to find customer groups and behaviour patterns.</li>
+          <li>Handled preprocessing, exploratory analysis, model implementation and visualisation to support data-driven insights.</li>
+        </ul>
+        <div class="chips"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span><span>K-Means</span></div>
+      </div>
+    </article>
+
+    <article class="tl-item rv">
+      <span class="tl-dot"></span>
+      <div class="tl-card tilt">
+        <div class="tl-meta mono"><span>June 2025 – July 2025</span><span>Mohali, India</span></div>
+        <h3>Full Stack Trainee <span class="muted">@ PG Tech Solutions</span></h3>
+        <ul>
+          <li>Built dynamic web applications on the MERN stack: MongoDB, Express.js, React.js and Node.js.</li>
+          <li>Worked with RESTful APIs and client-server communication while following version control, code review and software development best practices.</li>
+        </ul>
+        <div class="chips"><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span><span>REST</span></div>
+      </div>
+    </article>
+
+    <article class="tl-item rv">
+      <span class="tl-dot"></span>
+      <div class="tl-card tilt">
+        <div class="tl-meta mono"><span>Ongoing</span><span>Freelance</span></div>
+        <h3>Graphic Design &amp; Front-End <span class="muted">· Freelance</span></h3>
+        <ul>
+          <li>Design and front-end work for clients, from visuals in Figma and Canva to responsive interfaces in React and Tailwind.</li>
+        </ul>
+        <div class="chips"><span>Figma</span><span>Canva</span><span>React</span><span>Tailwind</span></div>
+      </div>
+    </article>
+  </div>
+
+  <!-- K-Means playground -->
+  <div class="demo-wrap rv" id="kmeansDemo">
+    <div class="demo-head">
+      <div>
+        <div class="mono acc small-t">TRY IT · the model from my SkillCraft internship</div>
+        <h3>K-Means playground</h3>
+        <p class="muted">Click the canvas to drop points, pick K, then press <b>Step</b> or <b>Run</b> and watch centroids hunt for their clusters.</p>
+      </div>
+      <div class="controls">
+        <label class="mono small-t">K <select id="kSel"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></label>
+        <button class="btn small hov" id="kStep">Step</button>
+        <button class="btn small hov" id="kRun">Run</button>
+        <button class="btn small ghost hov" id="kRand">Random data</button>
+        <button class="btn small ghost hov" id="kClear">Clear</button>
+      </div>
+    </div>
+    <div class="canvas-box"><canvas id="kCanvas"></canvas><div class="canvas-hud mono" id="kHud">points: 0 · iteration: 0</div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="sec-head rv"><span class="idx mono">03</span><h2 data-scramble>Projects</h2></div>
+
+  <article class="project rv" id="p-sentinel">
+    <div class="p-info">
+      <div class="p-tag mono">Aug 2026 – Present · Major project</div>
+      <h3>Sentinel IPS</h3>
+      <p class="p-sub">ML-based intrusion detection &amp; AI-powered intrusion prevention</p>
+      <p>A machine learning-based network security system that monitors traffic, identifies threats and triggers automated responses, integrating SDN and OpenFlow concepts. Built with Python and Flask.</p>
+      <div class="chips"><span>Python</span><span>Flask</span><span>Machine Learning</span><span>SDN</span><span>OpenFlow</span></div>
+    </div>
+    <div class="p-demo">
+      <div class="demo-bar mono"><span>live traffic · simulation</span>
+        <span class="ctl"><button class="toggle on hov" id="sToggle" aria-pressed="true"><i></i><b>Sentinel ON</b></button><button class="btn small hov" id="sAttack">Launch attack</button></span>
+      </div>
+      <div class="stats-row mono">
+        <div><b id="sTotal">0</b><span>packets</span></div>
+        <div class="good"><b id="sBlocked">0</b><span>blocked</span></div>
+        <div class="bad"><b id="sBreach">0</b><span>breached</span></div>
+      </div>
+      <div class="log mono" id="sLog" aria-live="off"></div>
+      <p class="fine mono muted">Illustrative simulation of the idea, not the real classifier.</p>
+    </div>
+  </article>
+
+  <article class="project flip rv" id="p-iso">
+    <div class="p-info">
+      <div class="p-tag mono">Feb 2025 – Mar 2025</div>
+      <h3>ISO: Intelligent Systems for Oceans</h3>
+      <p class="p-sub">AI-based coral reef monitoring</p>
+      <p>An AI system for image enhancement and classification of healthy versus bleached corals, covering preprocessing, feature extraction, model training and evaluation with Python, Pandas, OpenCV and Scikit-learn.</p>
+      <div class="chips"><span>Python</span><span>OpenCV</span><span>Scikit-learn</span><span>Pandas</span></div>
+    </div>
+    <div class="p-demo">
+      <div class="demo-bar mono"><span>drag to compare reef health</span><span id="isoPct" class="acc">bleached: 50%</span></div>
+      <div class="iso" id="isoBox"><canvas id="isoCanvas"></canvas>
+        <span class="iso-lab l mono">HEALTHY</span><span class="iso-lab r mono">BLEACHED</span>
+        <div class="iso-handle" id="isoHandle"><i></i></div>
+      </div>
+      <p class="fine mono muted">Procedurally drawn illustration, not project imagery.</p>
+    </div>
+  </article>
+
+  <article class="project rv" id="p-nourivo">
+    <div class="p-info">
+      <div class="p-tag mono">Feb 2025 – Mar 2025</div>
+      <h3>Nourivo</h3>
+      <p class="p-sub">Fitness-for-impact platform</p>
+      <p>A fitness platform that integrates the Google Fit API to track activity and triggers meal donations when users hit predefined milestones. Responsive React.js and Tailwind CSS frontend with Firebase for backend, auth and data.</p>
+      <div class="chips"><span>React</span><span>Tailwind CSS</span><span>Firebase</span><span>Google Fit API</span></div>
+    </div>
+    <div class="p-demo">
+      <div class="demo-bar mono"><span>move your steps, feed someone</span><span class="acc" id="nSteps">0 steps</span></div>
+      <div class="nourivo">
+        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" id="nRing" cx="60" cy="60" r="52"/></svg>
+        <div class="ring-text"><b id="nMeals">0</b><span class="mono">meals donated</span></div>
+      </div>
+      <input type="range" id="nRange" min="0" max="12000" step="100" value="0" aria-label="Steps today">
+      <div class="miles mono"><span data-m="3000">3k → 1 meal</span><span data-m="6000">6k → 2 meals</span><span data-m="10000">10k → 3 meals</span></div>
+      <div class="plates" id="nPlates" aria-hidden="true"></div>
+      <p class="fine mono muted">Demo of the milestone logic. Thresholds here are illustrative.</p>
+    </div>
+  </article>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="sec-head rv"><span class="idx mono">04</span><h2 data-scramble>Skills</h2></div>
+  <div class="filters rv" id="filters">
+    <button class="f on hov" data-f="all">All</button>
+    <button class="f hov" data-f="lang">Languages</button>
+    <button class="f hov" data-f="web">Web</button>
+    <button class="f hov" data-f="ml">Data &amp; ML</button>
+    <button class="f hov" data-f="core">Core CS</button>
+    <button class="f hov" data-f="tools">Tools</button>
+  </div>
+  <div class="skill-cloud rv" id="skillCloud"></div>
+  <div class="marquee" aria-hidden="true"><div class="track" id="marq"></div></div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec" id="education">
+  <div class="sec-head rv"><span class="idx mono">05</span><h2 data-scramble>Education</h2></div>
+  <div class="edu">
+    <article class="edu-card tilt rv">
+      <div class="mono muted small-t">2023 – 2027 · Mohali, Punjab</div>
+      <h3>I. K. Gujral Punjab Technical University</h3>
+      <p>Bachelor of Technology in Computer Science and Engineering</p>
+      <div class="big-num"><span data-count="9.24" data-dec="2">0</span><small>CGPA</small></div>
+    </article>
+    <article class="edu-card tilt rv">
+      <div class="mono muted small-t">2022 · Lucknow, Uttar Pradesh</div>
+      <h3>City Montessori School</h3>
+      <p>Grade 12, ISC</p>
+      <div class="big-num"><span data-count="96.5" data-dec="1">0</span><small>%</small></div>
+    </article>
+    <article class="edu-card tilt rv">
+      <div class="mono muted small-t">2020 · Lucknow, Uttar Pradesh</div>
+      <h3>City Montessori School</h3>
+      <p>Grade 10, ICSE</p>
+      <div class="big-num"><span data-count="97.4" data-dec="1">0</span><small>%</small></div>
+    </article>
+  </div>
+</section>
+
+<!-- TERMINAL -->
+<section class="sec" id="terminal">
+  <div class="sec-head rv"><span class="idx mono">06</span><h2 data-scramble>Terminal</h2></div>
+  <p class="muted rv term-note">Prefer typing? This whole portfolio is scriptable. Type <code>help</code> to start.</p>
+  <div class="term rv" id="term">
+    <div class="term-top"><span class="tl r"></span><span class="tl y"></span><span class="tl g"></span><span class="mono muted">praatishthaa@portfolio: ~</span></div>
+    <div class="term-body mono" id="tBody"><div id="tOut"></div>
+      <label class="term-line"><span class="prompt">❯</span><input id="tIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input"></label>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact" id="contact">
+  <div class="sec-head rv"><span class="idx mono">07</span><h2 data-scramble>Contact</h2></div>
+  <div class="contact-grid">
+    <div class="rv">
+      <h3 class="mega">Let's build<br>something <span class="serif grad">great.</span></h3>
+      <p class="muted">Internships, collaborations, freelance design or front-end work. My inbox is open.</p>
+      <div class="cta">
+        <a class="btn mag hov" id="mailBtn" href="mailto:praatishthaagoyal126@gmail.com">Email me</a>
+        <button class="btn ghost mag hov" id="copyMail">Copy address</button>
+        <a class="btn ghost mag hov" href="https://github.com/praatishthaa" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <p class="mono muted small-t" style="margin-top:18px">praatishthaagoyal126@gmail.com</p>
+    </div>
+    <form class="form rv" id="mailForm" autocomplete="off">
+      <label>Your name<input name="n" type="text" required placeholder="Ada Lovelace"></label>
+      <label>Your email<input name="e" type="email" required placeholder="ada@example.com"></label>
+      <label>Message<textarea name="m" rows="5" required placeholder="Hi Praatishthaa, I'd love to chat about..."></textarea></label>
+      <button class="btn mag hov" type="submit">Open in my mail app →</button>
+      <p class="fine mono muted">No backend, no tracking. This opens a pre-filled email in your mail app.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <span class="mono muted">© <span id="yr">2026</span> Praatishthaa Goyal</span>
+  <span class="mono muted">hand-built with HTML, CSS &amp; vanilla JS · <button class="linkish hov" id="surprise">surprise me</button></span>
+</footer>
+
+<!-- command palette -->
+<div class="pal" id="pal" hidden>
+  <div class="pal-box" role="dialog" aria-modal="true" aria-label="Command palette">
+    <input id="palIn" type="text" placeholder="Type a command or jump to a section…" autocomplete="off" spellcheck="false">
+    <ul id="palList" role="listbox"></ul>
+    <div class="pal-foot mono muted"><span>↑↓ navigate</span><span>↵ run</span><span>esc close</span></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
